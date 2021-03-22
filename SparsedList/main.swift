@@ -7,7 +7,7 @@
 
 import Foundation
 
-let list = SparsedList<Int>()
+let list = SparsedArrayList<Int>()
 
 list.set(x: 0, y: 0, z: 0, value: 1)
 list.set(x: 0, y: 0, z: 1, value: 2)
