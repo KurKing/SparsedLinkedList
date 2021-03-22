@@ -20,6 +20,8 @@ list.set(x: 0, y: 0, z: 0, value: 10)
 list.set(x: 1, y: 0, z: 2, value: 10)
 
 print(list.toString())
+print("Not nil nodes amount: \(list.notNilNodesAmount)\n")
+
 list.sortNonEmpty()
 
 print(list.toString())

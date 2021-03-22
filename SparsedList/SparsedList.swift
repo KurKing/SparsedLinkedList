@@ -10,6 +10,7 @@ import Foundation
 class SparsedList<T: Comparable> {
     
     private var rootNode: Node<T>?
+    private(set) var notNilNodesAmount = 0
     
     func get(x: Int, y: Int, z: Int) -> T? {
         var node = rootNode
@@ -20,15 +21,17 @@ class SparsedList<T: Comparable> {
             }
             node = currentNode.nextNode
         }
-
+        
         return nil
     }
     
     func set(x: Int, y: Int, z: Int, value: T){
         let newNode = Node(x: x, y: y, z: z, value: value)
+        notNilNodesAmount+=1
         
         guard let root = rootNode else {
             rootNode = newNode
+            
             return
         }
         
@@ -49,6 +52,7 @@ class SparsedList<T: Comparable> {
         
         if newNode.x == node.x && newNode.y == node.y && newNode.z == node.z {
             node.value = value
+            notNilNodesAmount-=1
             return
         }
         
@@ -57,7 +61,30 @@ class SparsedList<T: Comparable> {
     }
     
     func sortNonEmpty() {
+        guard var current: Node<T>? = rootNode else {
+            return
+        }
         
+        while current != nil {
+            var index = current!.nextNode
+            
+            while index != nil {
+                
+                if current!.value > index!.value {
+                    swapNodes(node1: current!, node2: index!)
+                }
+                
+                index = index?.nextNode;
+            }
+            
+            current = current?.nextNode;
+        }
+    }
+    
+    private func swapNodes(node1: Node<T>, node2: Node<T>) {
+        let temp = node1.value;
+        node1.value = node2.value;
+        node2.value = temp;
     }
     
     func toString() -> String {
