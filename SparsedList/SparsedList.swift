@@ -11,7 +11,16 @@ class SparsedList<T: Comparable> {
     
     private var rootNode: Node<T>?
     
-    func get(x: Int, y: Int, z: Int) -> Node<T>? {
+    func get(x: Int, y: Int, z: Int) -> T? {
+        var node = rootNode
+        
+        while let currentNode = node {
+            if currentNode.x == x && currentNode.y == y && currentNode.z == z {
+                return currentNode.value
+            }
+            node = currentNode.nextNode
+        }
+
         return nil
     }
     

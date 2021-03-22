@@ -12,4 +12,5 @@ let list = SparsedList<Int>()
 list.set(x: 0, y: 0, z: 0, value: 1)
 
 print(list.toString())
-
+print(list.get(x: 0, y: 0, z: 0))
+print(list.get(x: 0, y: 0, z: 1))
